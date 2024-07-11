@@ -1,19 +1,68 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class InputField extends StatelessWidget {
+import '../../ui/color_styles.dart';
+import '../../ui/text_styles.dart';
+
+class InputField extends StatefulWidget {
+  final void Function(String text) onChanged;
   final String label;
-  final String place_holder;
+  final String placeHolder;
+  final double topPadding;
 
-  const InputField(
-      {super.key, required this.label, required this.place_holder});
+  const InputField({
+    super.key,
+    required this.label,
+    required this.placeHolder,
+    required this.onChanged,
+    required this.topPadding,
+  });
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('Label',style: ,),
+  State<InputField> createState() => _InputFieldState();
+}
 
-      ],
+class _InputFieldState extends State<InputField> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: widget.topPadding),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.label,
+            style: Fonts.smallTextRegular,
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          TextField(
+            style: Fonts.smallerTextRegular.copyWith(
+              color: ColorStyles.black,
+            ),
+            onChanged: widget.onChanged,
+            decoration: InputDecoration(
+                hintText: widget.placeHolder,
+                hintStyle: Fonts.smallerTextRegular.copyWith(
+                  color: ColorStyles.grey4,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(
+                    color: ColorStyles.primary80,
+                    width: 1.5,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                border: OutlineInputBorder(
+                  borderSide: const BorderSide(
+                    color: ColorStyles.grey4,
+                    width: 1.5,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                )),
+          )
+        ],
+      ),
     );
   }
 }
