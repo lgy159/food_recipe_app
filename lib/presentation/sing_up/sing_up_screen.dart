@@ -42,7 +42,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                 label: 'Email',
                 placeHolder: 'Enter Email',
                 onChanged: (String text) {},
-                topPadding: 30,
+                topPadding: 57,
               ),
               // Password TextField
               InputField(
