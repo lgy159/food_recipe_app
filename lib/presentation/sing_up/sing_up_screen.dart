@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sesac_ton/presentation/components/big_button.dart';
-import 'package:sesac_ton/presentation/components/divide_text.dart';
-import 'package:sesac_ton/presentation/components/input_field.dart';
-import 'package:sesac_ton/presentation/components/sns_login_buttons.dart';
-import 'package:sesac_ton/ui/text_styles.dart';
 
 import '../../ui/color_styles.dart';
+import '../../ui/text_styles.dart';
+import '../components/big_button.dart';
+import '../components/divide_text.dart';
+import '../components/input_field.dart';
+import '../components/sns_login_buttons.dart';
 
 class SingUpScreen extends StatefulWidget {
   const SingUpScreen({super.key});

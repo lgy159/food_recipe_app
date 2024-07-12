@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sesac_ton/ui/color_styles.dart';
-import 'package:sesac_ton/ui/text_styles.dart';
+
+import '../../ui/color_styles.dart';
+import '../../ui/text_styles.dart';
 
 class DivideText extends StatelessWidget {
   final String label;

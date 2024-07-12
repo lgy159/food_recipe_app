@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:sesac_ton/presentation/sing_up/sing_up_screen.dart';
+import 'package:sesac_ton/data/data_source_impl/recipe_data_source.dart';
+import 'package:sesac_ton/data/repository/recipe_repository.dart';
+import 'package:sesac_ton/data/repository_impl/recipe_repository_impl.dart';
+import 'package:sesac_ton/presentation/navigation/navigation.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  final RecipeDataSourceImpl dataSource = RecipeDataSourceImpl();
+  final RecipeRepositoryImpl recipeRepository =
+      RecipeRepositoryImpl(dataSource);
+
+  runApp(MyApp(
+    recipeRepository: recipeRepository,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final RecipeRepository recipeRepository;
 
-  // This widget is the root of your application.
+  const MyApp({super.key, required this.recipeRepository});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +27,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SingUpScreen(),
+      home: Scaffold(
+        // body: SavedRecipesScreen(
+        //   recipeRepository: recipeRepository,
+        // ),
+        body: Navigation(recipeRepository: recipeRepository,),
+      ),
     );
   }
 }

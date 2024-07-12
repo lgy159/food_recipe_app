@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
 
-class InputField extends StatefulWidget {
+class InputField extends StatelessWidget {
   final void Function(String text) onChanged;
   final String label;
   final String placeHolder;
@@ -18,19 +18,14 @@ class InputField extends StatefulWidget {
   });
 
   @override
-  State<InputField> createState() => _InputFieldState();
-}
-
-class _InputFieldState extends State<InputField> {
-  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: widget.topPadding),
+      padding: EdgeInsets.only(top: topPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            widget.label,
+            label,
             style: Fonts.smallTextRegular,
           ),
           const SizedBox(
@@ -40,9 +35,9 @@ class _InputFieldState extends State<InputField> {
             style: Fonts.smallerTextRegular.copyWith(
               color: ColorStyles.black,
             ),
-            onChanged: widget.onChanged,
+            onChanged: onChanged,
             decoration: InputDecoration(
-                hintText: widget.placeHolder,
+                hintText: placeHolder,
                 hintStyle: Fonts.smallerTextRegular.copyWith(
                   color: ColorStyles.grey4,
                 ),
