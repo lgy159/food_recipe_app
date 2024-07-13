@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sesac_ton/presentation/saved_recipes/saved_recipes_screen.dart';
+import 'package:sesac_ton/presentation/saved_recipes/saved_recipes_view_model.dart';
 import 'package:sesac_ton/ui/color_styles.dart';
 
 import '../../data/repository/recipe_repository.dart';
@@ -46,8 +48,11 @@ class _NavigationState extends State<Navigation> {
     return Scaffold(
       body: [
         const Center(child: Text('Home')),
-        SavedRecipesScreen(
-          recipeRepository: widget.recipeRepository,
+        ChangeNotifierProvider<SavedRecipesViewModel>(
+          create: (context) => SavedRecipesViewModel(),
+          child: SavedRecipesScreen(
+            recipeRepository: widget.recipeRepository,
+          ),
         ),
         const Center(child: Text('Notifications')),
         const Center(child: Text('Profile')),

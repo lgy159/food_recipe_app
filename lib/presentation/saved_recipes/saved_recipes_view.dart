@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sesac_ton/core/result.dart';
 import 'package:sesac_ton/data/model/saved_recipe.dart';
 import 'package:sesac_ton/data/repository/recipe_repository.dart';
 import 'package:sesac_ton/presentation/components/recipe_card_widget.dart';
+import 'package:sesac_ton/presentation/saved_recipes/saved_recipes_view_model.dart';
 
-class SavedRecipesView extends StatelessWidget {
+class SavedRecipesView extends StatefulWidget {
   final RecipeRepository recipeRepository;
 
   const SavedRecipesView({
@@ -13,9 +15,15 @@ class SavedRecipesView extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  State<SavedRecipesView> createState() => _SavedRecipesViewState();
+}
+
+class _SavedRecipesViewState extends State<SavedRecipesView> {
+  late List<SavedRecipe> recipes;
+
+  Widget useFutureBuilder() {
     return FutureBuilder<Result<List<SavedRecipe>>>(
-      future: recipeRepository.getSavedRecipes(),
+      future: widget.recipeRepository.getSavedRecipes(),
       builder: (
         BuildContext context,
         AsyncSnapshot<Result<List<SavedRecipe>>> snapshot,
@@ -41,5 +49,26 @@ class SavedRecipesView extends StatelessWidget {
         }
       },
     );
+  }
+
+  Widget useViewmodel() {
+    return Consumer<SavedRecipesViewModel>(
+      builder: (context, provider, child) {
+        recipes = provider.recipes;
+        return Expanded(
+          child: ListView.builder(
+            itemCount: recipes.length,
+            itemBuilder: (context, index) {
+              return RecipeCardWidget(savedRecipe: recipes[index]);
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return useViewmodel();
   }
 }
