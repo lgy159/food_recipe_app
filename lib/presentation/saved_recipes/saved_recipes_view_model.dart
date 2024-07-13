@@ -10,7 +10,11 @@ import '../../data/model/saved_recipe.dart';
 class SavedRecipesViewModel with ChangeNotifier {
   late final RecipeRepository _recipeRepository;
   late final RecipeDataSource _recipeDataSource;
+
+  bool _isLoading = true;
   List<SavedRecipe> _recipes = List.empty(growable: true);
+
+  bool get isLoading => _isLoading;
 
   List<SavedRecipe> get recipes => _recipes;
 
@@ -21,11 +25,17 @@ class SavedRecipesViewModel with ChangeNotifier {
   }
 
   Future<void> _getRecipes() async {
+    _isLoading = true;
+    notifyListeners();
+
+    await Future.delayed(const Duration(seconds: 2)); // 예시: 2초 대기
+
     final result = await _recipeRepository.getSavedRecipes();
     switch (result) {
       case Success<List<SavedRecipe>>(:final data):
         _recipes = data;
         print(data);
+        _isLoading = false;
         notifyListeners();
       case Error<List<SavedRecipe>>(:final e):
     }

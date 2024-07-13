@@ -54,11 +54,16 @@ class _SavedRecipesViewState extends State<SavedRecipesView> {
   Widget useViewmodel() {
     return Consumer<SavedRecipesViewModel>(
       builder: (context, provider, child) {
+        if (provider.isLoading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
         recipes = provider.recipes;
         return Expanded(
           child: ListView.builder(
             itemCount: recipes.length,
             itemBuilder: (context, index) {
+
               return RecipeCardWidget(savedRecipe: recipes[index]);
             },
           ),
