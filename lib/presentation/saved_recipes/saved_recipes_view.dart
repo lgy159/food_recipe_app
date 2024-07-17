@@ -5,6 +5,7 @@ import 'package:sesac_ton/core/result.dart';
 import 'package:sesac_ton/data/model/saved_recipe.dart';
 import 'package:sesac_ton/data/repository/recipe_repository.dart';
 import 'package:sesac_ton/presentation/components/recipe_card_widget.dart';
+import 'package:sesac_ton/presentation/saved_recipe_detail/saved_recipe_detail_screen.dart';
 import 'package:sesac_ton/presentation/saved_recipes/saved_recipes_view_model.dart';
 
 class SavedRecipesView extends StatefulWidget {
@@ -66,11 +67,21 @@ class _SavedRecipesViewState extends State<SavedRecipesView> {
           child: ListView.builder(
             itemCount: recipes.length,
             itemBuilder: (context, index) {
-              return RecipeCardWidget(
-                savedRecipe: recipes[index],
-                onTap: () {
-                  context.push('/saved_recipes/detail', extra: recipes[index]);
-                },
+              return Hero(
+                tag: 'RecipeCard',
+                child: RecipeCardWidget(
+                  savedRecipe: recipes[index],
+                  onTap: () {
+                    // context.push('/saved_recipes/detail', extra: recipes[index]);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SavedRecipeDetailScreen(
+                            savedRecipe: recipes[index]),
+                      ),
+                    );
+                  },
+                ),
               );
             },
           ),

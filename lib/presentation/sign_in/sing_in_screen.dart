@@ -7,99 +7,60 @@ import '../components/divide_text.dart';
 import '../components/input_field.dart';
 import '../components/sns_login_buttons.dart';
 
-class SingUpScreen extends StatefulWidget {
-  const SingUpScreen({super.key});
+class SingInScreen extends StatefulWidget {
+  const SingInScreen({super.key});
 
   @override
-  State<SingUpScreen> createState() => _SingUpScreenState();
+  State<SingInScreen> createState() => _SingInScreenState();
 }
 
-class _SingUpScreenState extends State<SingUpScreen> {
-  bool _isChecked = false;
-
+class _SingInScreenState extends State<SingInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(30, 10, 30, 27),
+          padding: const EdgeInsets.fromLTRB(30, 50, 30, 27),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Text Style/Large Text/Bold
               Text(
-                'Create an account',
-                style: Fonts.largeTextBold.copyWith(
+                'Hello',
+                style: Fonts.headerTextBold.copyWith(
                   color: ColorStyles.black,
                 ),
               ),
-              //Text Style/Smaller Text/Regular
               Text(
-                'Let’s help you set up your account,',
-                style: Fonts.smallerTextRegular.copyWith(
+                'welcome Back!',
+                style: Fonts.largeTextRegular.copyWith(
                   color: ColorStyles.black2,
                 ),
-              ),
-              Text(
-                'it won’t take long.',
-                style: Fonts.smallerTextRegular.copyWith(
-                  color: ColorStyles.black2,
-                ),
-              ),
-
-              // Name TextField
-              InputField(
-                label: 'Name',
-                placeHolder: 'Enter Name',
-                onChanged: (String text) {},
-                topPadding: 20,
               ),
               // Email TextField
               InputField(
                 label: 'Email',
                 placeHolder: 'Enter Email',
                 onChanged: (String text) {},
-                topPadding: 20,
+                topPadding: 57,
               ),
               // Password TextField
               InputField(
                 label: 'Enter Password',
                 placeHolder: 'Enter Password',
                 onChanged: (String text) {},
-                topPadding: 20,
-              ),
-              // Confirm Password TextField
-              InputField(
-                label: 'Confirm Password',
-                placeHolder: 'Retype Password',
-                onChanged: (String text) {},
-                topPadding: 20,
+                topPadding: 30,
               ),
 
+              // Text Style/Smaller Text/Regular
               Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 13),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Checkbox(
-                      value: _isChecked,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          _isChecked = value!;
-                        });
-                      },
-                      activeColor: ColorStyles.secondary100,
-                    ),
-                    Text(
-                      'Accept terms & Condition',
-                      style: Fonts.smallerTextRegular.copyWith(
-                        color: ColorStyles.secondary100,
-                      ),
-                    ),
-                  ],
+                padding: const EdgeInsets.fromLTRB(10, 20, 0, 25),
+                child: Text(
+                  'Forgot password?',
+                  style: Fonts.smallerTextRegular.copyWith(
+                    color: ColorStyles.secondary100,
+                  ),
                 ),
               ),
-
               BigButton(
                 title: 'Sign In',
                 onTap: () {},
@@ -107,30 +68,30 @@ class _SingUpScreenState extends State<SingUpScreen> {
 
               const DivideText(
                 label: 'or Sign in With',
-                topPadding: 14,
+                topPadding: 20,
               ),
-
               const SnsLoginButtons(),
 
               // Sing up
               GestureDetector(
                 onTap: () {},
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.only(top: 55),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      // Text Style/Smaller Text/Semi Bold
                       Text.rich(
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: 'Already a member',
+                              text: 'Don’t have an account? ',
                               style: Fonts.smallerTextBold.copyWith(
                                 color: ColorStyles.black,
                               ),
                             ),
                             TextSpan(
-                              text: 'Sign in',
+                              text: 'Sign up',
                               style: Fonts.smallerTextBold.copyWith(
                                 color: ColorStyles.secondary100,
                               ),

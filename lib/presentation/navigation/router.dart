@@ -5,6 +5,9 @@ import 'package:sesac_ton/data/repository_impl/recipe_repository_impl.dart';
 import 'package:sesac_ton/presentation/home/home_screen.dart';
 import 'package:sesac_ton/presentation/saved_recipe_detail/saved_recipe_detail_screen.dart';
 import 'package:sesac_ton/presentation/saved_recipes/saved_recipes_screen.dart';
+import 'package:sesac_ton/presentation/sign_in/sing_in_screen.dart';
+import 'package:sesac_ton/presentation/sing_up/sing_up_screen.dart';
+import 'package:sesac_ton/presentation/splash/splash_screen.dart';
 
 final recipeRepositoryImpl = RecipeRepositoryImpl(RecipeDataSourceImpl());
 final router = GoRouter(
@@ -15,11 +18,11 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/sing_up',
-      builder: (context, state) => const HomeScreen(),
+      builder: (context, state) => const SingUpScreen(),
     ),
     GoRoute(
       path: '/sing_in',
-      builder: (context, state) => const HomeScreen(),
+      builder: (context, state) => const SingInScreen(),
     ),
     GoRoute(
       path: '/saved_recipes',

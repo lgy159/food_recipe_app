@@ -19,26 +19,40 @@ class SavedRecipeDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              RecipeCardDetailWidget(savedRecipe: savedRecipe),
-              const SizedBox(height: 10),
-              SizedBox(
-                width: 190,
-                child: Text(
-                  savedRecipe.title,
-                  style: Fonts.smallTextBold.copyWith(
-                    color: ColorStyles.black,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 3,
+      body: Hero(
+        tag: 'RecipeCard',
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                RecipeCardDetailWidget(savedRecipe: savedRecipe),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 190,
+                      child: Text(
+                        savedRecipe.title,
+                        style: Fonts.smallTextBold.copyWith(
+                          color: ColorStyles.black,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 3,
+                      ),
+                    ),
+                    const Expanded(child: SizedBox()),
+                    Text(
+                      '(13k Reviews)',
+                      style: Fonts.smallTextRegular.copyWith(
+                        color: ColorStyles.grey3,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
