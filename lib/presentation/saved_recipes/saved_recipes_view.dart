@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:sesac_ton/core/result.dart';
 import 'package:sesac_ton/data/model/saved_recipe.dart';
@@ -39,8 +40,10 @@ class _SavedRecipesViewState extends State<SavedRecipesView> {
             return Expanded(
               child: ListView(
                 children: recipesResult.data
-                    .map((savedRecipe) =>
-                        RecipeCardWidget(savedRecipe: savedRecipe))
+                    .map((savedRecipe) => RecipeCardWidget(
+                          savedRecipe: savedRecipe,
+                          onTap: () {},
+                        ))
                     .toList(),
               ),
             );
@@ -63,8 +66,12 @@ class _SavedRecipesViewState extends State<SavedRecipesView> {
           child: ListView.builder(
             itemCount: recipes.length,
             itemBuilder: (context, index) {
-
-              return RecipeCardWidget(savedRecipe: recipes[index]);
+              return RecipeCardWidget(
+                savedRecipe: recipes[index],
+                onTap: () {
+                  context.push('/saved_recipes/detail', extra: recipes[index]);
+                },
+              );
             },
           ),
         );

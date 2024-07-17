@@ -6,16 +6,16 @@ import 'package:sesac_ton/ui/color_styles.dart';
 
 import '../../data/repository/recipe_repository.dart';
 
-class Navigation extends StatefulWidget {
+class BottomNavigation extends StatefulWidget {
   final RecipeRepository recipeRepository;
 
-  const Navigation({super.key, required this.recipeRepository});
+  const BottomNavigation({super.key, required this.recipeRepository});
 
   @override
-  State<Navigation> createState() => _NavigationState();
+  State<BottomNavigation> createState() => _BottomNavigationState();
 }
 
-class _NavigationState extends State<Navigation> {
+class _BottomNavigationState extends State<BottomNavigation> {
   int currentPageIndex = 0;
 
   NavigationDestinationLabelBehavior labelBehavior =
@@ -23,9 +23,10 @@ class _NavigationState extends State<Navigation> {
 
   final destination = [
     NavigationDestination(
-        icon: Image.asset('assets/nav/home.png'),
-        selectedIcon: Image.asset('assets/nav/home_selected.png'),
-        label: 'home'),
+      icon: Image.asset('assets/nav/home.png'),
+      selectedIcon: Image.asset('assets/nav/home_selected.png'),
+      label: 'home',
+    ),
     NavigationDestination(
       icon: Image.asset('assets/nav/saved.png'),
       selectedIcon: Image.asset('assets/nav/saved_selected.png'),
