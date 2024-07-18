@@ -8,61 +8,23 @@ import 'package:sesac_ton/presentation/components/recipe_card_widget.dart';
 import 'package:sesac_ton/presentation/saved_recipe_detail/saved_recipe_detail_screen.dart';
 import 'package:sesac_ton/presentation/saved_recipes/saved_recipes_view_model.dart';
 
-class SavedRecipesView extends StatefulWidget {
-  final RecipeRepository recipeRepository;
+class SavedRecipesView extends StatelessWidget {
+  final SavedRecipesViewModel savedRecipesViewModel;
 
   const SavedRecipesView({
     super.key,
-    required this.recipeRepository,
+    required this.savedRecipesViewModel,
   });
 
-  @override
-  State<SavedRecipesView> createState() => _SavedRecipesViewState();
-}
-
-class _SavedRecipesViewState extends State<SavedRecipesView> {
-  late List<SavedRecipe> recipes;
-
-  Widget useFutureBuilder() {
-    return FutureBuilder<Result<List<SavedRecipe>>>(
-      future: widget.recipeRepository.getSavedRecipes(),
-      builder: (
-        BuildContext context,
-        AsyncSnapshot<Result<List<SavedRecipe>>> snapshot,
-      ) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        }
-
-        final recipesResult = snapshot.data!;
-
-        switch (recipesResult) {
-          case Success<List<SavedRecipe>>():
-            return Expanded(
-              child: ListView(
-                children: recipesResult.data
-                    .map((savedRecipe) => RecipeCardWidget(
-                          savedRecipe: savedRecipe,
-                          onTap: () {},
-                        ))
-                    .toList(),
-              ),
-            );
-          case Error<List<SavedRecipe>>():
-            return Text(recipesResult.e);
-        }
-      },
-    );
-  }
-
   Widget useViewmodel() {
-    return Consumer<SavedRecipesViewModel>(
-      builder: (context, provider, child) {
-        if (provider.isLoading) {
+    return ListenableBuilder(
+      listenable: savedRecipesViewModel,
+      builder: (context, child) {
+        if (savedRecipesViewModel.isLoading) {
           return const Center(child: CircularProgressIndicator());
         }
 
-        recipes = provider.recipes;
+        final recipes = savedRecipesViewModel.recipes;
         return Expanded(
           child: ListView.builder(
             itemCount: recipes.length,
@@ -72,14 +34,8 @@ class _SavedRecipesViewState extends State<SavedRecipesView> {
                 child: RecipeCardWidget(
                   savedRecipe: recipes[index],
                   onTap: () {
-                    // context.push('/saved_recipes/detail', extra: recipes[index]);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SavedRecipeDetailScreen(
-                            savedRecipe: recipes[index]),
-                      ),
-                    );
+                    context.push('/saved_recipes/detail',
+                        extra: recipes[index]);
                   },
                 ),
               );

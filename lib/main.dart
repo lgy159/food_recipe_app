@@ -13,9 +13,11 @@ void main() async {
   final RecipeRepositoryImpl recipeRepository =
       RecipeRepositoryImpl(dataSource);
 
-  runApp(MyApp(
-    recipeRepository: recipeRepository,
-  ));
+  runApp(
+    MyApp(
+      recipeRepository: recipeRepository,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => SavedRecipesViewModel(),
+          create: (_) => SavedRecipesViewModel(recipeRepository),
         ),
       ],
       child: MaterialApp.router(

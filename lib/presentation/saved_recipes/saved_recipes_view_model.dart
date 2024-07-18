@@ -8,8 +8,7 @@ import 'package:sesac_ton/data/repository_impl/recipe_repository_impl.dart';
 import '../../data/model/saved_recipe.dart';
 
 class SavedRecipesViewModel with ChangeNotifier {
-  late final RecipeRepository _recipeRepository;
-  late final RecipeDataSource _recipeDataSource;
+  final RecipeRepository _recipeRepository;
 
   bool _isLoading = true;
   List<SavedRecipe> _recipes = List.empty(growable: true);
@@ -18,9 +17,7 @@ class SavedRecipesViewModel with ChangeNotifier {
 
   List<SavedRecipe> get recipes => _recipes;
 
-  SavedRecipesViewModel() {
-    _recipeDataSource = RecipeDataSourceImpl();
-    _recipeRepository = RecipeRepositoryImpl(_recipeDataSource);
+  SavedRecipesViewModel(this._recipeRepository) {
     _getRecipes();
   }
 

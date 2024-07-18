@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
@@ -74,7 +75,10 @@ class _SingInScreenState extends State<SingInScreen> {
 
               // Sing up
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  context.go('/sing_up');
+
+                },
                 child: Padding(
                   padding: const EdgeInsets.only(top: 55),
                   child: Row(

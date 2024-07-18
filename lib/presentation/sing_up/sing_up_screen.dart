@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
@@ -101,8 +102,10 @@ class _SingUpScreenState extends State<SingUpScreen> {
               ),
 
               BigButton(
-                title: 'Sign In',
-                onTap: () {},
+                title: 'Sign Up',
+                onTap: () {
+                  context.go('/home');
+                },
               ),
 
               const DivideText(
@@ -114,7 +117,9 @@ class _SingUpScreenState extends State<SingUpScreen> {
 
               // Sing up
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  context.go('/sing_in');
+                },
                 child: Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Row(

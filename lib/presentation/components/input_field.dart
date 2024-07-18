@@ -37,24 +37,25 @@ class InputField extends StatelessWidget {
             ),
             onChanged: onChanged,
             decoration: InputDecoration(
-                hintText: placeHolder,
-                hintStyle: Fonts.smallerTextRegular.copyWith(
+              hintText: placeHolder,
+              hintStyle: Fonts.smallerTextRegular.copyWith(
+                color: ColorStyles.grey4,
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                  color: ColorStyles.primary80,
+                  width: 1.5,
+                ),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              border: OutlineInputBorder(
+                borderSide: const BorderSide(
                   color: ColorStyles.grey4,
+                  width: 1.5,
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(
-                    color: ColorStyles.primary80,
-                    width: 1.5,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                border: OutlineInputBorder(
-                  borderSide: const BorderSide(
-                    color: ColorStyles.grey4,
-                    width: 1.5,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                )),
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
           )
         ],
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sesac_ton/presentation/home/home_screen.dart';
 import 'package:sesac_ton/presentation/saved_recipes/saved_recipes_screen.dart';
 import 'package:sesac_ton/presentation/saved_recipes/saved_recipes_view_model.dart';
 import 'package:sesac_ton/ui/color_styles.dart';
@@ -48,11 +49,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: [
-        const Center(child: Text('Home')),
+        const HomeScreen(),
         ChangeNotifierProvider<SavedRecipesViewModel>(
-          create: (context) => SavedRecipesViewModel(),
+          create: (context) => SavedRecipesViewModel(widget.recipeRepository),
           child: SavedRecipesScreen(
-            recipeRepository: widget.recipeRepository,
+            savedRecipesViewModel:
+                SavedRecipesViewModel(widget.recipeRepository),
           ),
         ),
         const Center(child: Text('Notifications')),

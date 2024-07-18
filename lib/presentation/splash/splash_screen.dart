@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sesac_ton/presentation/components/big_button.dart';
 import 'package:sesac_ton/ui/color_styles.dart';
 import 'package:sesac_ton/ui/text_styles.dart';
@@ -57,7 +58,9 @@ class SplashScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(66, 64, 66, 84),
-                  child: BigButton(title: 'Start Cooking', onTap: () {}),
+                  child: BigButton(title: 'Start Cooking', onTap: () {
+                    context.go('/sing_in');
+                  }),
                 ),
               ],
             ),

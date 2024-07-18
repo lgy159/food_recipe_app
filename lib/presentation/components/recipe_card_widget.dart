@@ -32,7 +32,7 @@ class RecipeCardWidget extends StatelessWidget {
                   height: 150,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Colors.black.withOpacity(0.7), Colors.transparent],
+                      colors: [Colors.black.withOpacity(1), Colors.transparent],
                       begin: Alignment.bottomCenter,
                       end: Alignment.topCenter,
                     ),
