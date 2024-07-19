@@ -23,7 +23,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(30, 10, 30, 27),
+          padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -78,7 +78,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
               ),
 
               Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 13),
+                padding: const EdgeInsets.only(top: 0, bottom: 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -110,7 +110,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
 
               const DivideText(
                 label: 'or Sign in With',
-                topPadding: 14,
+                topPadding: 10,
               ),
 
               const SnsLoginButtons(),
@@ -121,7 +121,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   context.go('/sing_in');
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

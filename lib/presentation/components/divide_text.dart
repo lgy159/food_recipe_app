@@ -26,7 +26,7 @@ class DivideText extends StatelessWidget {
         children: [
           const Expanded(
             child: Divider(
-              height: 50,
+              height: 10,
               color: Colors.grey,
               thickness: 1.0,
             ),
@@ -43,7 +43,7 @@ class DivideText extends StatelessWidget {
           ),
           const Expanded(
             child: Divider(
-              height: 50,
+              height: 10,
               color: Colors.grey,
               thickness: 1.0,
             ),

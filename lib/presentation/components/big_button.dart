@@ -31,7 +31,7 @@ class _BigButtonState extends State<BigButton> {
       onTapUp: (_) {
         setState(() {
           buttonColor = ColorStyles.primary100;
-          widget.onTap;
+          widget.onTap();
         });
       },
       onTapCancel: () {

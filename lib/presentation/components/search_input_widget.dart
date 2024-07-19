@@ -4,7 +4,9 @@ import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
 
 class SearchInputWidget extends StatelessWidget {
-  const SearchInputWidget({super.key});
+  final void Function(String text) onChanged;
+
+  const SearchInputWidget({super.key, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +16,7 @@ class SearchInputWidget extends StatelessWidget {
           child: SizedBox(
             height: 40,
             child: TextField(
+              onChanged: onChanged,
               style: Fonts.smallerTextRegular.copyWith(
                 color: ColorStyles.black,
               ),

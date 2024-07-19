@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sesac_ton/presentation/components/search_input_layout.dart';
 import 'package:sesac_ton/presentation/components/search_input_widget.dart';
 
 import '../../ui/color_styles.dart';
@@ -51,8 +52,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              GestureDetector(
-                child: SearchInputWidget(),
+              SearchInputLayout(
                 onTap: () {
                   context.go('/search_recipe');
                 },

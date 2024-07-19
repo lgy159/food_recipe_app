@@ -8,28 +8,28 @@ class RecipeThumbnailCard extends StatelessWidget {
   final void Function() onTap;
   final SavedRecipe savedRecipe;
 
-  const RecipeThumbnailCard({super.key, required this.onTap, required this.savedRecipe,});
+  const RecipeThumbnailCard({super.key, required this.onTap, required this.savedRecipe});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
-        height: 150,
-        width: 150,
+        height: 180,
+        width: 180,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20.0),
           child: Stack(
             children: [
-              Image.network(
-                savedRecipe.imageUrl,
-                width: double.infinity,
-                height: 160,
-                fit: BoxFit.cover,
+              Positioned.fill(
+                child: Image.network(
+                  savedRecipe.imageUrl,
+                  fit: BoxFit.cover,
+                ),
               ),
               Container(
                 width: double.infinity,
-                height: 160,
+                height: double.infinity,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [Colors.black.withOpacity(1), Colors.transparent],
@@ -52,7 +52,7 @@ class RecipeThumbnailCard extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.star, color: Colors.orange, size: 10),
+                      const Icon(Icons.star, color: ColorStyles.rating, size: 10),
                       const SizedBox(width: 3),
                       Text(
                         savedRecipe.rate.toString(),
@@ -74,16 +74,13 @@ class RecipeThumbnailCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          SizedBox(
-                            width: 130,
-                            child: Text(
-                              savedRecipe.title,
-                              style: Fonts.smallerTextBold.copyWith(
-                                color: ColorStyles.white,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 3,
+                          Text(
+                            savedRecipe.title,
+                            style: Fonts.smallerTextBold.copyWith(
+                              color: ColorStyles.white,
                             ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
                           ),
                           const SizedBox(height: 4),
                           Text(

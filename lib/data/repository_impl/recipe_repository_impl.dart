@@ -17,4 +17,26 @@ class RecipeRepositoryImpl implements RecipeRepository {
       return Result.error(e.toString());
     }
   }
+
+  @override
+  Future<Result<List<SavedRecipe>>> getRecentRecipes() async {
+    try {
+      final data = await recipeDataSource.getSavedRecipes();
+      return Result.success(data);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
+  }
+
+  @override
+  Future<Result<List<SavedRecipe>>> searchRecipes(String title) async {
+    try {
+      final data = await recipeDataSource.getSavedRecipes();
+      final result = data.where((recipe) => recipe.title.contains(title)).toList();
+
+      return Result.success(result);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
+  }
 }

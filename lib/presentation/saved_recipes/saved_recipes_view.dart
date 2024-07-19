@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-import 'package:sesac_ton/core/result.dart';
-import 'package:sesac_ton/data/model/saved_recipe.dart';
-import 'package:sesac_ton/data/repository/recipe_repository.dart';
 import 'package:sesac_ton/presentation/components/recipe_card_widget.dart';
-import 'package:sesac_ton/presentation/saved_recipe_detail/saved_recipe_detail_screen.dart';
 import 'package:sesac_ton/presentation/saved_recipes/saved_recipes_view_model.dart';
 
 class SavedRecipesView extends StatelessWidget {
