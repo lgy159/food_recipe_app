@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sesac_ton/core/result.dart';
-import 'package:sesac_ton/data/data_source/recipe_data_source.dart';
-import 'package:sesac_ton/data/data_source_impl/recipe_data_source.dart';
 import 'package:sesac_ton/data/repository/recipe_repository.dart';
-import 'package:sesac_ton/data/repository_impl/recipe_repository_impl.dart';
 
 import '../../data/model/saved_recipe.dart';
 
@@ -31,10 +28,11 @@ class SavedRecipesViewModel with ChangeNotifier {
     switch (result) {
       case Success<List<SavedRecipe>>(:final data):
         _recipes = data;
-        print(data);
         _isLoading = false;
         notifyListeners();
-      case Error<List<SavedRecipe>>(:final e):
+      case Error<List<SavedRecipe>>():
+        _isLoading = true;
+        notifyListeners();
     }
   }
 }

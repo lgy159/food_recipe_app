@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:sesac_ton/presentation/components/recipe_card_widget.dart';
 import 'package:sesac_ton/presentation/saved_recipes/saved_recipes_view_model.dart';
 
 class SavedRecipesView extends StatelessWidget {
-  final SavedRecipesViewModel savedRecipesViewModel;
-
   const SavedRecipesView({
     super.key,
-    required this.savedRecipesViewModel,
   });
 
   Widget useViewmodel() {
-    return ListenableBuilder(
-      listenable: savedRecipesViewModel,
-      builder: (context, child) {
-        if (savedRecipesViewModel.isLoading) {
+    return Consumer<SavedRecipesViewModel>(
+      builder: (context, viewmodel, child) {
+        if (viewmodel.isLoading) {
           return const Center(child: CircularProgressIndicator());
         }
 
-        final recipes = savedRecipesViewModel.recipes;
+        final recipes = viewmodel.recipes;
         return Expanded(
           child: ListView.builder(
             itemCount: recipes.length,

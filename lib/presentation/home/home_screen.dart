@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sesac_ton/presentation/components/search_input_layout.dart';
-import 'package:sesac_ton/presentation/components/search_input_widget.dart';
 
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';

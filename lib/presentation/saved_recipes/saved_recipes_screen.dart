@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sesac_ton/data/repository/recipe_repository.dart';
 import 'package:sesac_ton/presentation/saved_recipes/saved_recipes_view.dart';
-import 'package:sesac_ton/presentation/saved_recipes/saved_recipes_view_model.dart';
 
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
 
 class SavedRecipesScreen extends StatelessWidget {
-  final SavedRecipesViewModel savedRecipesViewModel;
-
-  const SavedRecipesScreen({super.key, required this.savedRecipesViewModel});
+  const SavedRecipesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +20,10 @@ class SavedRecipesScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
+      body: const Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SavedRecipesView(
-            savedRecipesViewModel: savedRecipesViewModel,
-          ),
+          SavedRecipesView(),
         ],
       ),
     );

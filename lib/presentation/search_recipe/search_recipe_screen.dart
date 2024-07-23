@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sesac_ton/data/model/saved_recipe.dart';
 import 'package:sesac_ton/presentation/components/recipe_thumbnail_card.dart';
 import 'package:sesac_ton/presentation/search_recipe/search_recipes_view_model.dart';
 

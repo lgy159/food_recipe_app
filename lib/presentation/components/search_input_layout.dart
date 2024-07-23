@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../ui/color_styles.dart';
-import '../../ui/text_styles.dart';
 
 class SearchInputLayout extends StatelessWidget {
   final void Function() onTap;

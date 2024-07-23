@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:sesac_ton/presentation/home/home_screen.dart';
 import 'package:sesac_ton/presentation/saved_recipes/saved_recipes_screen.dart';
 import 'package:sesac_ton/presentation/saved_recipes/saved_recipes_view_model.dart';
-import 'package:sesac_ton/ui/color_styles.dart';
 
 import '../../data/repository/recipe_repository.dart';
 
@@ -52,10 +51,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         const HomeScreen(),
         ChangeNotifierProvider<SavedRecipesViewModel>(
           create: (context) => SavedRecipesViewModel(widget.recipeRepository),
-          child: SavedRecipesScreen(
-            savedRecipesViewModel:
-                SavedRecipesViewModel(widget.recipeRepository),
-          ),
+          child: const SavedRecipesScreen(),
         ),
         const Center(child: Text('Notifications')),
         const Center(child: Text('Profile')),
