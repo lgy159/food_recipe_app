@@ -1,10 +1,14 @@
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:sesac_ton/data/data_source_impl/recipe_data_source_impl.dart';
 import 'package:sesac_ton/data/model/saved_recipe.dart';
+import 'package:sesac_ton/data/repository_impl/ingrident_repository_impl.dart';
+import 'package:sesac_ton/data/repository_impl/procedure_repository_impl.dart';
 import 'package:sesac_ton/data/repository_impl/recipe_repository_impl.dart';
 import 'package:sesac_ton/presentation/home/home_screen.dart';
 import 'package:sesac_ton/presentation/profile/profile_screen.dart';
 import 'package:sesac_ton/presentation/saved_recipe_detail/saved_recipe_detail_screen.dart';
+import 'package:sesac_ton/presentation/saved_recipe_detail/saved_recipe_detail_view_model.dart';
 import 'package:sesac_ton/presentation/saved_recipes/saved_recipes_screen.dart';
 import 'package:sesac_ton/presentation/search_recipe/search_recipe_screen.dart';
 import 'package:sesac_ton/presentation/search_recipe/search_recipes_view_model.dart';
@@ -53,7 +57,15 @@ final router = GoRouter(
         path: '/saved_recipes/detail',
         builder: (context, state) {
           final savedRecipe = state.extra as SavedRecipe;
-          return SavedRecipeDetailScreen(savedRecipe: savedRecipe);
+          final ingridentRepo = IngridentRepositoryImpl(RecipeDataSourceImpl());
+          final procedureRepo = ProcedureRepositoryImpl(RecipeDataSourceImpl());
+          final savedRecipesDetailViewModel =
+              SavedRecipesDetailViewModel(ingridentRepo, procedureRepo);
+
+          return ChangeNotifierProvider<SavedRecipesDetailViewModel>(
+            create: (context) => savedRecipesDetailViewModel,
+            child: SavedRecipeDetailScreen(savedRecipe: savedRecipe),
+          );
         }),
     GoRoute(
       path: '/profile',

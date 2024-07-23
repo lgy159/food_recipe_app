@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sesac_ton/presentation/components/procedure_item.dart';
+import 'package:sesac_ton/presentation/saved_recipe_detail/saved_recipe_detail_view_model.dart';
 
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
@@ -36,15 +38,26 @@ class SavedRecipesDetailProcedureView extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 13.5),
-        Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              children: List.generate(6, (index) {
-                return const ProcedureItem();
-              }),
-            ),
-          ),
-        ),
+        Consumer<SavedRecipesDetailViewModel>(
+          builder: (context, viewmodel, child) {
+            if (viewmodel.isLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            final procedures = viewmodel.procedures;
+            return Expanded(
+              child: ListView.builder(
+                itemCount: procedures.length,
+                itemBuilder: (context, index) {
+                  return ProcedureItem(
+                    procedure: procedures[index],
+                    index: index,
+                  );
+                },
+              ),
+            );
+          },
+        )
       ],
     );
   }

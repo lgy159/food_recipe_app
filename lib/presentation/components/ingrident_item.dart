@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:sesac_ton/data/model/ingrident.dart';
 import 'package:sesac_ton/ui/color_styles.dart';
 import 'package:sesac_ton/ui/text_styles.dart';
 
 class IngridentItem extends StatelessWidget {
+  final Ingrident ingrident;
+
   const IngridentItem({
     super.key,
+    required this.ingrident,
   });
 
   @override
@@ -39,7 +43,7 @@ class IngridentItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Tomatos',
+                  ingrident.title,
                   style: Fonts.normalTextBold.copyWith(
                     color: ColorStyles.black2,
                   ),
@@ -49,7 +53,7 @@ class IngridentItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  '500g',
+                  '${ingrident.weight}g',
                   style: Fonts.smallTextRegular.copyWith(
                     color: ColorStyles.grey3,
                   ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sesac_ton/presentation/saved_recipe_detail/saved_recipe_detail_view_model.dart';
 
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
@@ -35,15 +37,25 @@ class SavedRecipesDetailIngridentView extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 13.5),
-        Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              children: List.generate(6, (index) {
-                return const IngridentItem();
-              }),
-            ),
-          ),
-        ),
+        Consumer<SavedRecipesDetailViewModel>(
+          builder: (context, viewmodel, child) {
+            if (viewmodel.isLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            final ingridents = viewmodel.ingridents;
+            return Expanded(
+              child: ListView.builder(
+                itemCount: ingridents.length,
+                itemBuilder: (context, index) {
+                  return IngridentItem(
+                    ingrident: ingridents[index],
+                  );
+                },
+              ),
+            );
+          },
+        )
       ],
     );
   }
