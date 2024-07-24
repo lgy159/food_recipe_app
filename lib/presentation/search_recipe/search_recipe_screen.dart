@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:sesac_ton/presentation/components/recipe_thumbnail_card.dart';
 import 'package:sesac_ton/presentation/search_recipe/search_recipes_view_model.dart';
 
@@ -8,15 +9,14 @@ import '../../ui/text_styles.dart';
 import '../components/search_input_widget.dart';
 
 class SearchRecipeScreen extends StatelessWidget {
-  final SearchRecipesViewModel searchRecipesViewModel;
-
   const SearchRecipeScreen({
     super.key,
-    required this.searchRecipesViewModel,
   });
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<SearchRecipesViewModel>();
+    final recipes = viewModel.recipes;
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
@@ -44,7 +44,7 @@ class SearchRecipeScreen extends StatelessWidget {
             children: [
               SearchInputWidget(
                 onChanged: (text) {
-                  searchRecipesViewModel.searchRecipes(text);
+                  viewModel.searchRecipes(text);
                 },
               ),
               const SizedBox(height: 20),
@@ -54,35 +54,25 @@ class SearchRecipeScreen extends StatelessWidget {
                   color: ColorStyles.black,
                 ),
               ),
-              const SizedBox(height: 10),
-              ListenableBuilder(
-                listenable: searchRecipesViewModel,
-                builder: (context, child) {
-                  if (searchRecipesViewModel.isLoading) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-
-                  final recipes = searchRecipesViewModel.recipes;
-                  return Flexible(
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 15,
-                        mainAxisSpacing: 15,
-                      ),
-                      itemCount: recipes.length,
-                      itemBuilder: (context, index) {
-                        return RecipeThumbnailCard(
-                          onTap: () {},
-                          savedRecipe: recipes[index],
-                        );
-                      },
-                    ),
-                  );
-                },
-              )
+              if (viewModel.isLoading)
+                const Center(child: CircularProgressIndicator()),
+              Flexible(
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 15,
+                    mainAxisSpacing: 15,
+                  ),
+                  itemCount: recipes.length,
+                  itemBuilder: (context, index) {
+                    return RecipeThumbnailCard(
+                      onTap: () {},
+                      savedRecipe: recipes[index],
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),

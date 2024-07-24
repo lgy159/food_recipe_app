@@ -15,6 +15,8 @@ import 'package:sesac_ton/presentation/search_recipe/search_recipes_view_model.d
 import 'package:sesac_ton/presentation/sign_in/sing_in_screen.dart';
 import 'package:sesac_ton/presentation/sing_up/sing_up_screen.dart';
 
+import '../saved_recipes/saved_recipes_view_model.dart';
+
 final router = GoRouter(
   routes: [
     GoRoute(
@@ -38,18 +40,21 @@ final router = GoRouter(
     GoRoute(
       path: '/saved_recipes',
       builder: (context, state) {
-        return const SavedRecipesScreen();
+        final recipeRepository = RecipeRepositoryImpl(RecipeDataSourceImpl());
+        return ChangeNotifierProvider(
+          child: const SavedRecipesScreen(),
+          create: (_) => SavedRecipesViewModel(recipeRepository),
+        );
       },
     ),
     GoRoute(
       path: '/search_recipe',
       builder: (context, state) {
-        final recipeRepositoryImpl =
-            RecipeRepositoryImpl(RecipeDataSourceImpl());
-        final searchRecipeViewModel =
-            SearchRecipesViewModel(recipeRepositoryImpl);
-        return SearchRecipeScreen(
-          searchRecipesViewModel: searchRecipeViewModel,
+        final recipeRepository = RecipeRepositoryImpl(RecipeDataSourceImpl());
+        final searchRecipeViewModel = SearchRecipesViewModel(recipeRepository);
+        return ChangeNotifierProvider(
+          child: const SearchRecipeScreen(),
+          create: (_) => SearchRecipesViewModel(recipeRepository),
         );
       },
     ),

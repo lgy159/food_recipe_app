@@ -27,14 +27,12 @@ class _SingUpScreenState extends State<SingUpScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Text Style/Large Text/Bold
               Text(
                 'Create an account',
                 style: Fonts.largeTextBold.copyWith(
                   color: ColorStyles.black,
                 ),
               ),
-              //Text Style/Smaller Text/Regular
               Text(
                 'Let’s help you set up your account,',
                 style: Fonts.smallerTextRegular.copyWith(

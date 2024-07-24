@@ -9,33 +9,20 @@ import 'package:sesac_ton/presentation/saved_recipes/saved_recipes_view_model.da
 import 'presentation/navigation/router.dart';
 
 void main() async {
-  final RecipeDataSourceImpl dataSource = RecipeDataSourceImpl();
-  final RecipeRepositoryImpl recipeRepository =
-      RecipeRepositoryImpl(dataSource);
-
   runApp(
-    MyApp(
-      recipeRepository: recipeRepository,
-    ),
+    const MyApp(),
   );
 }
 
 class MyApp extends StatelessWidget {
-  final RecipeRepository recipeRepository;
-
-  const MyApp({super.key, required this.recipeRepository});
+  const MyApp({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => SavedRecipesViewModel(recipeRepository),
-        ),
-      ],
-      child: MaterialApp.router(
-        routerConfig: router,
-      ),
+    return MaterialApp.router(
+      routerConfig: router,
     );
   }
 }
